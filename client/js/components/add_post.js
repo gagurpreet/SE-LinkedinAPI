@@ -1,39 +1,41 @@
-function renderSignUp() {
+function renderAddPost() {
 	document.querySelector('#page').innerHTML = `
-	  <section class='sign-up'>
-		<form action="" onSubmit="signUp(event)">
-		  <h2>Sign Up:</h2>
+	  <section class='create-post'>
+		<form action="" onSubmit="createPostt(event)">
+		  <h2>Add Post</h2>
 		  <fieldset>
 			<label for="">Name: </label>
 			<input type="text" name="name">
 		  </fieldset>
 		  <fieldset>
-			<label for="">Email: </label>
-			<input type="text" name="email">
+			<label for="">Message: </label>
+			<textarea name="message" id="" cols="30" rows="10"></textarea>
 		  </fieldset>
 		  <fieldset>
-			<label for="">Password: </label>
-			<input type="password" name="password">
+			<label for="">Skills: </label>
+			<input type="text" name="skills">
 		  </fieldset>
-		  <button>Sign Up</button>
+		  <button>Add Post</button>
 		</form>
 	  </section>
 	`
 }
-  
-function signUp(event) {
+
+function createPost(event) {
 	event.preventDefault()
 	const form = event.target
   
 	// converts form data into an object
 	const data = Object.fromEntries(new FormData(form))
   
-	fetch('/api/users', {
+	fetch('/api/posts', {
 	  method: 'POST',
 	  headers: { 'Content-Type': 'application/json' },
 	  body: JSON.stringify(data)
 	})
 	  .then(res => res.json())
-	  .then(email => state.loggedInUser = email)
-	  .then(() => renderTreasureList())
+	  .then(post => {
+		state.posts.push(post)
+		renderPostList()
+	  })
 }
