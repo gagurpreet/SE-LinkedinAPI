@@ -4,9 +4,9 @@ function renderPostList() {
 		${renderPosts()}
 	  </section>
 	`
-  }
+}
   
-  function renderPosts() {
+function renderPosts() {
 	return state.posts.map(post => `
 	<section class="post" data-id='${post.id}'>
 	  <header>
@@ -17,9 +17,9 @@ function renderPostList() {
 	  <p>${post.skills}</p>
 	</section>
   `).join('')
-  }
+}
   
-  function deletePost(event) {
+function deletePost(event) {
 	const deleteBtn = event.target
 	const postDOM = deleteBtn.closest('.post')
 	const postId = postDOM.dataset.id
@@ -30,4 +30,4 @@ function renderPostList() {
 		state.posts = state.posts.filter(t => t.id != postId)
 		renderPostList()
 	  })
-  }
+}
