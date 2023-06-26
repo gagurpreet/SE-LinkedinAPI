@@ -1,12 +1,6 @@
 const express = require('express')
-
-
 const app = express()
 const PORT = 3001
-
-app.listen(PORT, () => console.log(`Server is listening here: http://localhost:${PORT}`))
-
-
 
 app.use(express.json())
 
@@ -18,6 +12,9 @@ app.get('/PostLoggedUser', (req, res) => {
 
 
 app.post('/PostLoggedUser', (req, res) => {
-	users = req.body.PostLoggedUser
+	const user = req.body
+	PostLoggedUser.push(user)
 	res.json({ PostLoggedUser })
 })
+
+app.listen(PORT, () => console.log(`Server is listening here: http://localhost:${PORT}`));
