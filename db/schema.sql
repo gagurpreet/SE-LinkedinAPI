@@ -1,5 +1,5 @@
-CREATE DATABASE SE_Linkedin;
-\c SE_Linkedin
+CREATE DATABASE se_linkedin;
+\c se_linkedin
 
 CREATE TABLE posts(
   id SERIAL PRIMARY KEY,
